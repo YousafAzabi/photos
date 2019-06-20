@@ -62,7 +62,7 @@ class FeedbackReportsPage extends Component {
   }
 
   render() {
-    const { user, label, handleClose, classes } = this.props;
+    const { label, handleClose, classes } = this.props;
 
     return (
       <PageWrapper label={label} handleClose={handleClose}>
@@ -82,10 +82,9 @@ class FeedbackReportsPage extends Component {
                     <Divider />
                     <ListItem key={feedback.id} button component={Link}
                       to={{
-                        pathname: config.PAGES.feedbackDetails.path,
+                        pathname: config.PAGES.feedbackReports.path + "/" + feedback.id,
                         state: {
-                          feedback: feedback,
-                          user: user
+                          feedback: feedback
                         }
                       }}
                     >
