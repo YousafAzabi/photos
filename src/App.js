@@ -12,7 +12,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 import PhotoPage from './components/PhotoPage';
 import ProfilePage from './components/ProfilePage';
-import Map from './components/Map';
+import Map from './components/MapPage/Map';
 import CustomPhotoDialog from './components/CustomPhotoDialog';
 import ModeratorPage from './components/ModeratorPage';
 import LoginFirebase from './components/LoginFirebase';
@@ -25,7 +25,8 @@ import WriteFeedbackPage from './components/WriteFeedbackPage';
 import DrawerContainer from './components/DrawerContainer';
 import TermsDialog from './components/TermsDialog';
 import EmailVerifiedDialog from './components/EmailVerifiedDialog';
-import FeedbackDetailsPage from './components/FeedbackReports/FeedbackDetailsPage';
+import FeedbackReportsPage from './components/FeedbackReportsPage';
+import DisplayPhoto from './components/MapPage/DisplayPhoto';
 import authFirebase from './authFirebase';
 import dbFirebase from './dbFirebase';
 import { gtagPageView, gtagEvent } from './gtag.js';
@@ -378,6 +379,8 @@ class App extends Component {
                   />}
                 />
 
+
+                <Route path={this.props.config.PAGES.displayPhoto.path} component={DisplayPhoto} />
 
               </Switch>
 
