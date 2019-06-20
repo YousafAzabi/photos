@@ -1,39 +1,38 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import '../ModeratorPage.scss';
 import FeedbackReportsPage from "./FeedbackReportsPage";
 import FeedbackDetailsPage from "./FeedbackDetailsPage";
 
 class FeedbackReportsSubrouter extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isShowAll: false
+    };
+  }
+
+  setShowAll(isShowAll) {
+    this.setState({ isShowAll});
+  }
 
   render() {
-
-    // TODO: deleteme
-    console.log(this.props);
-
-    // debugger;
-
-
     return (
-      <div>
+      <Switch>
 
         <Route exact path={this.props.config.PAGES.feedbackReports.path} render={(props) =>
-          <FeedbackReportsPage {...props}
-                               {...this.props}
-          />}
+          <FeedbackReportsPage {...this.props} {...props}
+                               isShowAll = {this.state.isShowAll}
+                               setShowAll = {isShowAll =>  this.setShowAll(isShowAll)} />}
         />
 
         <Route path={`${this.props.config.PAGES.feedbackReports.path}/:id`} render={(props) =>
-          <FeedbackDetailsPage {...this.props} {...props}
-
-          />}
+          <FeedbackDetailsPage {...this.props} {...props}/>}
         />
 
-      </div>
+      </Switch>
     );
   }
 }
