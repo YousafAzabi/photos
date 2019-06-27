@@ -145,7 +145,7 @@ class App extends Component {
 
         this.setState({ dbStats, stats, geojson });
       });
-    }, 1000);
+    }, 2000);
   }
 
   async componentWillUnmount() {
@@ -420,6 +420,7 @@ class App extends Component {
             />
           </main>
 
+        <Snackbar open={!this.state.geojson} message='Loading photos...' />
         <Snackbar open={this.state.welcomeShown && !this.state.online} message='Connecting to our servers...' />
 
         { window.cordova ?
