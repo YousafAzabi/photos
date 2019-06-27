@@ -192,11 +192,7 @@ class App extends Component {
   };
 
   handlePhotoClick = () => {
-
     if (this.props.config.SECURITY.UPLOAD_REQUIRES_LOGIN && !this.state.user) {
-          // TODO: show popup with message saying that the user needs an account for this feature
-          // alert("Please log in")
-
           this.setState({
             dialogOpen: true,
             dialogTitle: "attention",
