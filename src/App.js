@@ -312,7 +312,6 @@ class App extends Component {
   approveRejectPhoto = async (isApproved, id) => {
     // close dialogs
     this.handleConfirmDialogClose();
-    // if (this.props.history.location.path !== this.props.config.PAGES.map.path) this.handlePhotoPageClose();
 
     // unpublish photo in firestore
     try {
@@ -349,7 +348,13 @@ class App extends Component {
   rejectPhoto = id => this.approveRejectPhoto(false, id);
 
   handlePhotoPageClose = () => {
-    this.props.history.goBack();
+    const action = this.props.history.location.state ? 'goBack' : 'replace';
+
+    if ( this.props.history.location.pathname.startsWith(this.props.config.PAGES.embeddable.path)) {
+      this.props.history[action](this.props.config.PAGES.embeddable.path);
+    } else {
+      this.props.history[action](this.props.config.PAGES.map.path);
+    }
   }
 
   render() {
@@ -357,7 +362,7 @@ class App extends Component {
 
     return (
       <div className='geovation-app'>
-        { !this.state.termsAccepted && this.props.history.location.pathname !== this.props.config.PAGES.embeddable.path &&
+        { !this.state.termsAccepted && !this.props.history.location.pathname.startsWith(this.props.config.PAGES.embeddable.path) &&
           <TermsDialog handleClose={this.handleTermsPageClose}/>
         }
 
@@ -466,7 +471,7 @@ class App extends Component {
                     config={config}
                     handleRejectClick={this.handleRejectClick}
                     handleApproveClick={this.handleApproveClick}
-                    handleClose={() => this.props.history.replace(config.PAGES.map.path)}
+                    handleClose={this.handlePhotoPageClose}
                   />}
                 />
 
